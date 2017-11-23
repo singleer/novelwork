@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by ${lxh} on 2017/11/13 0013
@@ -48,12 +49,12 @@ public class IndexAction {
 
     @RequestMapping("/checkname")
     @ResponseBody
-    public String doLogin(NAdmin nAdmin) throws Exception{
+    public String doLogin(NAdmin nAdmin, HttpSession session) throws Exception{
         String  mess = "";
         NAdmin findUser = nAdminService.selectByadminname(nAdmin);
         if(findUser!=null){
             if(findUser.getPassword().equals(nAdmin.getPassword())){
-                        /*session.setAttribute("sessionUser", findUser);*/
+                        session.setAttribute("sessionAdmin", findUser);
                 mess="2";
             }else{
                 mess="3";
@@ -63,6 +64,9 @@ public class IndexAction {
         }
         return mess;
     }
-
-
+    @RequestMapping("/logout")
+    public String doLogout(HttpSession session){
+        session.removeAttribute("sessionAdmin");
+        return "login";
+    }
 }
