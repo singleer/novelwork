@@ -225,4 +225,8 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByadminname" parameterType="com.qf.novel.pojo.po.NAdmin" resultType="com.qf.novel.pojo.po.NAdmin">
+    SELECT * FROM n_admin WHERE adminname=#{adminname}
+  </select>
 </mapper>

@@ -2,8 +2,9 @@ package com.qf.novel.dao;
 
 import com.qf.novel.pojo.po.NOrder;
 import com.qf.novel.pojo.po.NOrderExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface NOrderMapper {
     int countByExample(NOrderExample example);
@@ -27,4 +28,5 @@ public interface NOrderMapper {
     int updateByPrimaryKeySelective(NOrder record);
 
     int updateByPrimaryKey(NOrder record);
+
 }

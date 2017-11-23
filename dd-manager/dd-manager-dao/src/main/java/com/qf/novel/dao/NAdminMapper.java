@@ -2,8 +2,9 @@ package com.qf.novel.dao;
 
 import com.qf.novel.pojo.po.NAdmin;
 import com.qf.novel.pojo.po.NAdminExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface NAdminMapper {
     int countByExample(NAdminExample example);
@@ -27,4 +28,6 @@ public interface NAdminMapper {
     int updateByPrimaryKeySelective(NAdmin record);
 
     int updateByPrimaryKey(NAdmin record);
+
+    NAdmin selectByadminname(NAdmin nAdmin);
 }

@@ -55,7 +55,7 @@
         </div>
         <div title="账单管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'index-item'}">solr索引库维护</li>
+                <li data-options="attributes:{'href':'order-list'}">查询账单</li>
             </ul>
         </div>
         <div title="新闻管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">

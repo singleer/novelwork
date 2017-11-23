@@ -36,19 +36,18 @@
 //一秒刷新一次显示时间
             var timeID=setTimeout(showLeftTime,1000);
         }
-        //-->
 	</script>
 </head>
 
 <body onload="showLeftTime()">
-<label id="show" style="padding-left: 800px;font-size: 20px;">显示时间的位置</label>
+<label id="show" style="padding-left: 800px">显示时间的位置</label>
 <div class="page-container">
-	<h1 style="font-size: 40px;color: black;font-family: 华文行楷">千峰小说后台管理</h1>
-
-	<form action="" method="post">
-		<input type="text" name="username" class="username" placeholder="Username">
-		<input type="password" name="password" class="password" placeholder="Password">
-		<button type="submit">登　录</button>
+	<h1>Login</h1>
+	<form id="myform" method="post" action="#">
+		<input type="text" id="username" name="username" class="username" placeholder="Username">
+		<span id="sp"></span>
+		<input type="password" id="password" name="password" class="password" placeholder="Password">
+		<button type="submit">Sign me in</button>
 		<div class="error"><span>+</span></div>
 	</form>
 
@@ -58,7 +57,42 @@
 <script src="${pageContext.request.contextPath }/js/supersized.3.2.7.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/supersized-init.js"></script>
 <script src="${pageContext.request.contextPath }/js/scripts.js"></script>
-
+<script>
+        $(function () {
+            $("#myform").submit(function(){
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var jsonObj = {"adminname":username,"password":password};
+                //$.ajax提交
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/checkname",
+                    data:jsonObj,
+                    dataType:"text",
+                    type:"post",
+                    cache:false,
+                    success:function(rec){
+                        /* if(rec==0){
+                             $("#sp1").html("用户名不能为空").css("color","red");
+                         }else if(rec==1){
+                             $("#sp2").html("密码不能为空").css("color","red");
+                         }else*/
+                        if(rec=='3'){
+                            if (username!=""&&password!="") {
+                                alert("用户名或密码错误，请重新输入");
+                                username = "";
+                                password = "";
+                            }
+                        }else{
+                            location.href="${pageContext.request.contextPath}/index"
+                        }
+                    },
+                    error:function(){
+                        alert("服务器出错!");
+                    }
+                });
+            });
+        });
+</script>
 </body>
 
 </html>
