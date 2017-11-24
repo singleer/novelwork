@@ -85,10 +85,12 @@
     $('#dg1').datagrid({
 
         url:'orders/list',//显示所有账单
+        toolbar: '#toolbar',
         striped: true,//斑马线效果
         pagination: true,//显示分页工具栏
         fit: true,//使得数据表格自适应填充父容器
         rownumbers: true,//显示行号
+        multiSort:true,
         pageSize: 20,
         pageList: [20, 50, 100],
         columns: [[

@@ -4,7 +4,7 @@
 
     <sql id="Base_Column_List" >
       o.id, o.status,o.price,o.content,o.created,
-      a.authorname as author
+      r.username as author
     </sql>
 
      <sql id="Where_Clause" >
@@ -28,7 +28,7 @@
     SELECT
     <include refid="Base_Column_List" />
     FROM n_order o
-     LEFT JOIN n_author a ON o.rid = a.id
+     LEFT JOIN n_reader r ON o.rid = r.id
         <include refid="Where_Clause"/>
     order by o.created
     LIMIT #{page.offset},#{page.rows}
