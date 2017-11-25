@@ -38,7 +38,7 @@
             <tr>
                 <td colspan="2">
                     <!-- 加载编辑器的容器 -->
-                    <script id="container" name="content" type="text/plain">${bookDesc.bookDesc}</script>
+                    <script id="container1" name="content" type="text/plain">${bookDesc.bookDesc}</script>
                 </td>
             </tr>
 
@@ -95,10 +95,15 @@
         ue.setContent('小说描述');
     }
 
+    //初始化之前删除原有的容器
+    UE.delEditor('container1');
+
     //实例化富文本编辑器
-    var ue = UE.getEditor('container',{
+    var ue = UE.getEditor('container1',{
         initialFrameWidth: '100%',//初始化编辑器宽度
-        initialFrameHeight: '300'
+        initialFrameHeight: '300',
+        serverUrl:'file/upload'
+
     });
 
 
@@ -121,6 +126,7 @@
             success:function(data){
                 if(data > 0) {
                     $.messager.alert('温馨提示','恭喜！修改小说成功！');
+                    novel.closeTabs("修改小说")
                     novel.addTabs('查询小说', 'book-list');
                 }
             }

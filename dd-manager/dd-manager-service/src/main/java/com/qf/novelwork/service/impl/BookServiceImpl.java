@@ -70,18 +70,24 @@ public class BookServiceImpl implements BookService {
         try{
 
             NBookExample example = new NBookExample();
+            NBookExample.Criteria criteria = example.createCriteria();
+            criteria.andIdEqualTo(nBook.getId());
             NBook nBook1 = bookDao.selectByPrimaryKey(nBook.getId());
+
             nBook1.setCid(nBook.getCid());
             nBook1.setTitle(nBook.getTitle());
             nBook1.setAid(nBook.getAid());
             nBook1.setReadpoint(nBook.getReadpoint());
+            nBook1.setUpdated(new Date());
             i = bookDao.updateByExampleSelective(nBook1,example);
 
 
             NBookDescExample example2 = new NBookDescExample();
+            NBookDescExample.Criteria criteria2 = example2.createCriteria();
+            criteria2.andBookIdEqualTo(nBook1.getId());
             NBookDesc bookDesc = bookDescDao.selectByPrimaryKey(nBook.getId());
             bookDesc.setBookDesc(content);
-            //i += bookDescDao.updateByExample(bookDesc,example2);
+            bookDesc.setUpdated(new Date());
             i += bookDescDao.updateByExampleSelective(bookDesc, example2);
 
         }catch (Exception e){

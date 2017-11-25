@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.novel.dao.NReaderCustomMapper" >
+  <sql id="Base_Column_List" >
+    r.id, r.username,r.sex,  r.phone, r.address,r.state, r.level, r.created, r.updated
+  </sql>
+
+ <sql id="Where_Clause">
+    <where>
+      r.state != 3
+      <if test="query != null and query.id != null">
+        and r.id = #{query.id}
+      </if>
+      <if test="query != null and query.username != null and query.username != ''">
+        and r.username like '%${query.username}%'
+      </if>
+      <if test="query != null and query.state != null and query.state != 0">
+        and r.state = #{query.state}
+      </if>
+    </where>
+  </sql>
+
+  <select id="countReaders" resultType="_int">
+    select count(1)
+    from n_reader r
+ <!--   <include refid="Where_Clause" />-->
+  </select>
+
+  <select id="listReadersByPage" resultType="com.qf.novel.pojo.po.NReader">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM n_reader r
+  /*  LEFT JOIN n_book b ON a.id=b.aid*/
+    <include refid="Where_Clause" />
+   <choose>
+      <when test="order != null and order.sort != null and order.order != null and order.orderParams != null">
+        <foreach collection="order.orderParams" item="item" open="order by" close="" separator=",">
+          r.${item}
+        </foreach>
+      </when>
+      <otherwise>
+        ORDER BY r.level DESC
+      </otherwise>
+    </choose>
+    LIMIT #{page.offset},#{page.rows}
+  </select>
+
+</mapper>

@@ -109,8 +109,7 @@ public class BookAction {
             book = bookService.findBookById(bid);
             bookCat = bookCatService.findCatById(book.getCid());
             bookDesc = bookService.findDescById(bid);
-            System.out.println(bookCat.getName());
-            System.out.println(bookDesc.getBookDesc());
+
 
             model.addAttribute("novel", book);
             model.addAttribute("bookCat", bookCat);

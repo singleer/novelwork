@@ -22,12 +22,12 @@
         <button onclick="up()" class="easyui-linkbutton" data-options="iconCls:'icon-up',plain:true">活跃</button>
     </div>
 </div>
-<table id="dg" ></table>
+<table id="author" ></table>
 <script>
     //模糊查询
     function searchForm(){
 
-        $('#dg').datagrid('load',{
+        $('#author').datagrid('load',{
             title: $('#title').val(),
             state: $('#state').combobox('getValue')
         });
@@ -35,11 +35,12 @@
     }
     //新增
     function add() {
+        novel.closeTabs('查询作者');
         novel.addTabs('新增作者','author-add');
     }
     //编辑作者
     function edit() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#author').datagrid('getSelections');
         console.log(selections);
         if (selections.length == 0) {
             //客户没有选择记录
@@ -52,13 +53,14 @@
             return;
         }
         else if(selections.length == 1){
+            novel.closeTabs('查询作者');
             novel.addTabs('编辑作者','author-edit');
         }
 
     }
     //批量删除
     function remove() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#author').datagrid('getSelections');
         console.log(selections);
         if (selections.length == 0) {
             //客户没有选择记录
@@ -85,7 +87,7 @@
                     //callback:后台处理成功的回调函数，相当于success，function类型
                     function(data){
                         //alert(data);
-                        $('#dg').datagrid('reload');
+                        $('#author').datagrid('reload');
                     },
                     //dataType:返回的数据类型，如：json，String类型
                     'json'
@@ -95,7 +97,7 @@
         });
     }
     function up() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#author').datagrid('getSelections');
         //console.log(selections);
         if (selections.length == 0) {
             //客户没有选择记录
@@ -122,7 +124,7 @@
                     //callback:后台处理成功的回调函数，相当于success，function类型
                     function(data){
                         //alert(data);
-                        $('#dg').datagrid('reload');
+                        $('#author').datagrid('reload');
                     },
                     //dataType:返回的数据类型，如：json，String类型
                     'json'
@@ -132,7 +134,7 @@
         });
     }
     function down() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#author').datagrid('getSelections');
         //console.log(selections);
         if (selections.length == 0) {
             //客户没有选择记录
@@ -159,7 +161,7 @@
                     //callback:后台处理成功的回调函数，相当于success，function类型
                     function(data){
                         //alert(data);
-                        $('#dg').datagrid('reload');
+                        $('#author').datagrid('reload');
                     },
                     //dataType:返回的数据类型，如：json，String类型
                     'json'
@@ -168,7 +170,7 @@
             }
         });
     }
-    $("#dg").datagrid({
+    $("#author").datagrid({
         url:"authors",
         multiSort:true,
         toolbar: '#toolbar',

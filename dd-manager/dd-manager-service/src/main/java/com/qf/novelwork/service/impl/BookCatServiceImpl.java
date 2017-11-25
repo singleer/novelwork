@@ -246,11 +246,18 @@ public class BookCatServiceImpl implements IBookCatService {
     public int editbookcat1(List<String> ids) {
         int i = 0;
         try {
-            NBookCat record = new NBookCat();
-            record.setName(ids.get(0));
             NBookCatExample example = new NBookCatExample();
             NBookCatExample.Criteria criteria = example.createCriteria();
             criteria.andNameEqualTo(ids.get(1));
+            List<NBookCat> nBookCats = bookCatDao.selectByExample(example);
+            NBookCat record = new NBookCat();
+            record.setId(nBookCats.get(0).getId());
+            record.setName(ids.get(0));
+            record.setParentId(nBookCats.get(0).getParentId());
+            record.setStatus(nBookCats.get(0).getStatus());
+            record.setIsparent(nBookCats.get(0).getIsparent());
+            record.setCreated(nBookCats.get(0).getCreated());
+            record.setUpdated(new Date());
             i=bookCatDao.updateByExample(record,example);
         } catch (Exception e) {
             e.printStackTrace();

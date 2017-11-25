@@ -4,26 +4,16 @@
 
 <div id="toolbar">
     <div style="padding: 5px; background-color: #fff;">
-        <label>小说名称：</label>
-        <input class="easyui-textbox" type="text" id="novelName" style="width: 100px;">
-        <label>作者名称：</label>
-        <input class="easyui-textbox" type="text" id="authorName" style="width: 100px;">
-        <label>小说状态：</label>
-        <select id="status" class="easyui-combobox" style="width: 60px;" >
-            <option value="0">全部</option>
-            <option value="1">连载</option>
-            <option value="2">完结</option>
-        </select>
+        <label>小说作者：</label>
+        <input id="author" name="authorname" class="easyui-combobox" width="50px">
         <!--http://www.cnblogs.com/wisdomoon/p/3330856.html-->
         <!--注意：要加上type="button",默认行为是submit-->
         <button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>
     </div>
     <div>
-        <button onclick="add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
-        <button onclick="edit()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">查看评论</button>
-        <%--<button onclick="up()" class="easyui-linkbutton" data-options="iconCls:'icon-up',plain:true"></button>
-        <button onclick="down()" class="easyui-linkbutton" data-options="iconCls:'icon-down',plain:true">下架</button>--%>
-        <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
+        <label style="font-size: 15px;">&nbsp&nbsp;操作：</label>
+        <button onclick="listReply()" class="easyui-linkbutton">查看回复</button>
+        <div style="height: 10px;"></div>
     </div>
 </div>
 
@@ -45,6 +35,7 @@
             {field: 'id', title: '评论编号', width: 120},
             {field: 'title', title: '标题', width: 100},
             {field: 'novel', title: '小说名', width: 100},
+            {field: 'author', title: '作者', width: 100},
             {field: 'reader', title: '读者名', width: 100},
             {field: 'content', title: '评论内容', width: 200},
             {field: 'created', title: '创建时间', formatter: function (value) {
@@ -54,6 +45,26 @@
 
         ]]
     });
+
+
+    //作者下拉框
+    $('#author').combobox({
+        url:'authorList',
+        valueField:'id',//相当于option的value值
+        textField:'authorname',//相当于<option></option>之间的显示值 value:1000    //默认显示值
+    });
+
+    function listReply() {
+        var selections = $('#comment').datagrid('getSelections');
+        if(selections.length>1){
+            $.messager.alert('警告','只能选择一条评论查看回复!','warning');
+        }else{
+            var pid = selections[0].id;
+            novel.closeTabs("查看回复");
+            novel.addTabs("查看回复","replyPage?pid="+pid+"");
+        }
+
+    }
 </script>
 
 

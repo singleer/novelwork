@@ -25,6 +25,23 @@ public class NContent {
 
     private String content;
 
+    @Override
+    public String toString() {
+        return "NContent{" +
+                "id=" + id +
+                ", cid=" + cid +
+                ", title='" + title + '\'' +
+                ", subTitle='" + subTitle + '\'' +
+                ", titleDesc='" + titleDesc + '\'' +
+                ", url='" + url + '\'' +
+                ", pic='" + pic + '\'' +
+                ", pic2='" + pic2 + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", content='" + content + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

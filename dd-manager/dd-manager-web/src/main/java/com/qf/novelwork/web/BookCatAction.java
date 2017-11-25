@@ -168,7 +168,7 @@ public class BookCatAction {
         return i;
     }
     @ResponseBody
-    @RequestMapping("/bookcateditname")
+    @RequestMapping("/bookcateditname/")
     public int editbookcat1(@RequestParam("ids[]") List<String> ids) {
         int i = 0;
         try {

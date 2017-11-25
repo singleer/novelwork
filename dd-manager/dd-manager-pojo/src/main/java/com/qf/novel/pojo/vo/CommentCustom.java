@@ -10,6 +10,15 @@ import com.qf.novel.pojo.po.NComment;
 public class CommentCustom extends NComment {
     private String novel;
     private String reader;
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getNovel() {
         return novel;

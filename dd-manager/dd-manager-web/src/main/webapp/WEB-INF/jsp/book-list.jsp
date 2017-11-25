@@ -41,6 +41,7 @@
 
     //新增小说
     function add() {
+        novel.closeTabs("查询小说");
         novel.addTabs('新增小说','book-add');
     }
 
@@ -86,6 +87,7 @@
         if(selections.length>1){
             $.messager.alert('警告','只能选择一条记录进行编辑!','warning');
         }else{
+            novel.closeTabs("查询小说");
             var bid = selections[0].id;
             novel.addTabs("修改小说","book-edit?bid="+bid+"");
         }

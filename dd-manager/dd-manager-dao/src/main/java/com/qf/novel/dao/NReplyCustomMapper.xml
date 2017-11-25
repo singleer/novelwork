@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.novel.dao.NReplyCustomMapper" >
+
+  <sql id="Base_Column_List" >
+    p.id as id,p.conntent as conntent,p.created,
+    m.title as title,e.username as poster,m.reader as reviewer
+  </sql>
+
+  <select id="countReplys" resultType="_int" parameterType="java.lang.Long">
+    select count(1)
+    FROM n_reply p
+    LEFT JOIN (select c.id as cid,c.title as title,r.username as reader from n_comment c LEFT JOIN n_reader r on c.rid = r.id) m ON p.comment_id = m.cid
+    LEFT JOIN n_reader e ON p.rid = e.id
+    where p.comment_id = #{commentId}
+    order by p.created
+  </select>
+
+  <select id="listReplysByPage" resultType="com.qf.novel.pojo.vo.ReplyCustom">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM n_reply p
+    LEFT JOIN (select c.id as cid,c.title as title,r.username as reader from n_comment c LEFT JOIN n_reader r on c.rid = r.id) m ON p.comment_id = m.cid
+    LEFT JOIN n_reader e ON p.rid = e.id
+    where p.comment_id = #{commentId}
+    order by p.created
+    LIMIT #{page.offset},#{page.rows}
+  </select>
+
+</mapper>

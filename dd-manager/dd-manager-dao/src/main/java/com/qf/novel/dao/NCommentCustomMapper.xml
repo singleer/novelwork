@@ -6,7 +6,7 @@
 
   <sql id="Base_Column_List" >
     c.id, c.book_id, c.title,c.content, c.rid, c.created,
-    b.title as novel,r.username as reader
+    b.title as novel,o.authorname as author,r.username as reader
   </sql>
 
 
@@ -23,6 +23,7 @@
     FROM n_comment c
     LEFT JOIN n_book b ON c.book_id = b.id
     LEFT JOIN n_reader r ON c.rid = r.id
+    LEFT JOIN n_author o ON b.aid = o.id
     order by c.created
     LIMIT #{page.offset},#{page.rows}
   </select>

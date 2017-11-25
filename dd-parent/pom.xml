@@ -10,6 +10,8 @@
     <modules>
         <module>../dd-common</module>
         <module>../dd-manager</module>
+        <module>../dd-portal-web</module>
+        <module>../dd-search-web</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -104,7 +106,7 @@
                 <version>${commons-codec.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.baidu</groupId>
+                <groupId>com.baidu</groupId> 
                 <artifactId>ueditor</artifactId>
                 <version>${baidu-ueditor.version}</version>
             </dependency>

@@ -7,8 +7,9 @@
             <tr>
                 <td class="label">类别名称：</td>
                 <td>
-                    <input class="easyui-textbox" type="text" id="name" name="name" value="${bname}"
+                    <input class="easyui-textbox" type="text" id="name1" name="name1" value="${bname}"
                            data-options="required:true">
+                    <input class="easyui-textbox" type="hidden" id="name2"value="${bname}">
                 </td>
             </tr>
             <tr>
@@ -25,14 +26,12 @@
     function submitForm(){
 
         var ids=[];
-        var val=$('#name').val();
-        var val1=${bname};
+        var val=$('#name1').val();
+        var val1=$('#name2').val();
         ids.push(val);
         ids.push(val1);
-        alert(ids[0]);
-        alert(ids[1]);
         var url = 'bookcateditname/';
-        $.post(url, {paramData: ids},function(data){
+        $.post(url, {'ids[]': ids},function(data){
             if(data>0){
                 $.messager.alert('消息','修改成功', 'info');
                 novel.closeTabs('编辑分类');

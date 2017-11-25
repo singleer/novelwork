@@ -37,7 +37,7 @@
 </div>
 <div data-options="region:'west'" style="width:200px;">
     <div id="menu" class="easyui-accordion" data-options="multiple:true,border:false">
-        <div title="小说管理" data-options="selected:true,iconCls:'icon-tip'" style="padding:10px 0;">
+        <div title="小说管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
                 <li data-options="attributes:{'href':'book-list'}">查询小说</li>
                 <li data-options="attributes:{'href':'book-add'}">新增小说</li>
@@ -52,7 +52,6 @@
         <div title="评论管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
                 <li data-options="attributes:{'href':'comment-list'}">查询评论</li>
-                <li data-options="attributes:{'href':'reply-list'}">查看回复</li>
             </ul>
         </div>
         <div title="书籍管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
@@ -67,7 +66,7 @@
         </div>
         <div title="新闻管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'index-item'}">solr索引库维护</li>
+                <li data-options="attributes:{'href':'news-list'}">查看新闻</li>
             </ul>
         </div>
         <div title="系统管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
@@ -82,9 +81,9 @@
                 <li data-options="attributes:{'href':'bookcat-add1'}">新增根分类</li>
             </ul>
         </div>
-        <div title="系统管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
+        <div title="读者管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
             <ul class="easyui-tree">
-                <li data-options="attributes:{'href':'index-item'}">solr索引库维护</li>
+                <li data-options="attributes:{'href':'reader-list'}">查看读者</li>
             </ul>
         </div>
         <div title="系统管理" data-options="iconCls:'icon-tip'" style="padding:10px 0;">
@@ -134,6 +133,18 @@
 <script type="text/javascript" src="js/ueditor/ueditor.config.js"></script>
 <!-- ueditor编辑器源码文件 -->
 <script type="text/javascript" src="js/ueditor/ueditor.all.js"></script>
+
+
+<script>
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage') {
+            return 'http://localhost:8080/novelwork/file/upload';
+        }else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
 
 
 <!-- 自定义脚本 -->

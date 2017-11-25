@@ -94,10 +94,14 @@
         ue.setContent('小说描述');
     }
 
+    //初始化之前删除原有的容器
+    UE.delEditor('container');
+
     //实例化富文本编辑器
     var ue = UE.getEditor('container',{
         initialFrameWidth: '100%',//初始化编辑器宽度
-        initialFrameHeight: '300'
+        initialFrameHeight: '300',
+        serverUrl:'file/upload'
     });
 
     //小说保存功能
@@ -118,6 +122,7 @@
             success:function(data){
                 if(data > 0) {
                     $.messager.alert('温馨提示','恭喜！添加小说成功！');
+                    novel.closeTabs('新增小说');
                     novel.addTabs('查询小说', 'book-list');
                 }
             }
