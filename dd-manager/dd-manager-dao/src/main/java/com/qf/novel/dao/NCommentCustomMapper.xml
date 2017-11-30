@@ -28,4 +28,13 @@
     LIMIT #{page.offset},#{page.rows}
   </select>
 
+  <insert id="insert" parameterType="com.qf.novel.pojo.po.NComment" >
+    insert into n_comment (id, book_id as bookId, title,
+    rid, status, created,
+    content)
+    values (#{id,jdbcType=BIGINT}, #{bookId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR},
+    #{rid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP},
+    #{content,jdbcType=LONGVARCHAR})
+  </insert>
+
 </mapper>

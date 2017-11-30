@@ -11,6 +11,7 @@ public class CommentCustom extends NComment {
     private String novel;
     private String reader;
     private String author;
+    private Integer replyNum;
 
     public String getAuthor() {
         return author;
@@ -34,5 +35,13 @@ public class CommentCustom extends NComment {
 
     public void setReader(String reader) {
         this.reader = reader;
+    }
+
+    public Integer getReplyNum() {
+        return replyNum;
+    }
+
+    public void setReplyNum(Integer replyNum) {
+        this.replyNum = replyNum;
     }
 }

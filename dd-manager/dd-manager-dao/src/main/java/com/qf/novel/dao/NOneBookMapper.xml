@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.novel.dao.NOneBookMapper" >
+    <select id="countcomment" parameterType="_long" resultType="_int">
+        select count(1)
+        from n_comment
+        where book_id=#{id }
+    </select>
+    <select id="clist" parameterType="_long" resultType="com.qf.novel.pojo.vo.CommentCustom">
+        select id,title,content,rid,status,created
+        from n_comment
+        where book_id=#{id }
+    </select>
+    <select id="countbookml" parameterType="_long" resultType="_int">
+        select count(1)
+        from n_book_ml
+        where book_id=#{id }
+    </select>
+    <select id="mlist" parameterType="_long" resultType="com.qf.novel.pojo.po.NBookMl">
+        select *
+        from n_book_ml
+        where book_id=#{id }
+    </select>
+    <select id="searchbook" parameterType="_long"  resultType="com.qf.novel.pojo.vo.NBookCustom">
+        select *
+        from n_book
+        where id=#{id }
+    </select>
+    <select id="desctitle" parameterType="_long"  resultType="com.qf.novel.pojo.po.NBookDesc">
+        select book_desc AS bookDesc
+        from n_book_desc
+        where book_id=#{id }
+    </select>
+
+    <select id="authordetail" parameterType="_long"  resultType="com.qf.novel.pojo.po.NAuthor">
+        select authorname
+        from n_author
+        where id=#{aid }
+    </select>
+
+    <select id="bookcat" parameterType="_long"  resultType="com.qf.novel.pojo.po.NBookCat">
+        select name
+        from n_book_cat
+        where id=#{cid }
+    </select>
+
+    <select id="reply" parameterType="_long"  resultType="_int">
+        SELECT count(1)
+        from n_reply
+        where comment_id=#{bid }
+    </select>
+
+    <select id="reader" parameterType="_long"  resultType="com.qf.novel.pojo.po.NReader">
+        SELECT username
+        from n_reader
+        where id=#{rid }
+    </select>
+</mapper>

@@ -42,4 +42,14 @@ public class NBookDesc {
     public void setBookDesc(String bookDesc) {
         this.bookDesc = bookDesc == null ? null : bookDesc.trim();
     }
+
+    @Override
+    public String toString() {
+        return "NBookDesc{" +
+                "bookId=" + bookId +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", bookDesc='" + bookDesc + '\'' +
+                '}';
+    }
 }

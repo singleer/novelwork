@@ -20,7 +20,6 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script language="javascript" type="text/javascript">
-        <!--
         //获得当前时间,刻度为一千分一秒
         var initializationTime=(new Date()).getTime();
         function showLeftTime()

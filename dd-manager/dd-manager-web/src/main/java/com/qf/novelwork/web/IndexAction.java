@@ -49,12 +49,12 @@ public class IndexAction {
 
     @RequestMapping("/checkname")
     @ResponseBody
-    public String doLogin(NAdmin nAdmin) throws Exception{
+    public String doLogin(NAdmin nAdmin,HttpSession session) throws Exception{
         String  mess = "";
         NAdmin findUser = nAdminService.selectByadminname(nAdmin);
         if(findUser!=null){
             if(findUser.getPassword().equals(nAdmin.getPassword())){
-                        /*session.setAttribute("sessionUser", findUser);*/
+                        session.setAttribute("sessionAdmin", findUser);
                 mess="2";
             }else{
                 mess="3";

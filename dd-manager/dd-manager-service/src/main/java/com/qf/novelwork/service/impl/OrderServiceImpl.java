@@ -24,7 +24,6 @@ import java.util.Map;
  */
 @Service
 public class OrderServiceImpl implements OrderService {
-
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private NOrderCustomMapper orderCustomDao;

@@ -1,6 +1,9 @@
 package com.qf.novel.pojo.vo;
 
 import com.qf.novel.pojo.po.NBook;
+import com.qf.novel.pojo.po.NBookMl;
+
+import java.util.List;
 
 /**
  * Created by ${lxh} on 2017/11/18 0018
@@ -8,11 +11,15 @@ import com.qf.novel.pojo.po.NBook;
 public class NBookCustom extends NBook {
     private String catName;//书籍类别
     private String author;//作者名
-    private String clickView;
-    private String ticketsView;
+    private String clickView;//点击量
+    private String ticketsView;//票数
     private String countView;
     private String scoreView;
-
+    private List<CommentCustom> clist;
+    private List<NBookMl> mlist;
+    private Integer mnum;
+    private Integer cnum;
+    private String  desctitle;
     public String getCatName() {
         return catName;
     }
@@ -60,4 +67,45 @@ public class NBookCustom extends NBook {
     public void setScoreView(String scoreView) {
         this.scoreView = scoreView;
     }
+
+    public List<CommentCustom> getClist() {
+        return clist;
+    }
+
+    public void setClist(List<CommentCustom> clist) {
+        this.clist = clist;
+    }
+
+    public List<NBookMl> getMlist() {
+        return mlist;
+    }
+
+    public void setMlist(List<NBookMl> mlist) {
+        this.mlist = mlist;
+    }
+
+    public Integer getMnum() {
+        return mnum;
+    }
+
+    public void setMnum(Integer mnum) {
+        this.mnum = mnum;
+    }
+
+    public Integer getCnum() {
+        return cnum;
+    }
+
+    public void setCnum(Integer cnum) {
+        this.cnum = cnum;
+    }
+
+    public String getDesctitle() {
+        return desctitle;
+    }
+
+    public void setDesctitle(String desctitle) {
+        this.desctitle = desctitle;
+    }
+
 }

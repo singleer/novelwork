@@ -162,4 +162,26 @@ public class NBook {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
+
+    @Override
+    public String toString() {
+        return "NBook{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", click=" + click +
+                ", tickets=" + tickets +
+                ", count=" + count +
+                ", score=" + score +
+                ", readpoint='" + readpoint + '\'' +
+                ", status=" + status +
+                ", attribute=" + attribute +
+                ", img='" + img + '\'' +
+                ", cid=" + cid +
+                ", rid=" + rid +
+                ", aid=" + aid +
+                ", pid=" + pid +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
 }
