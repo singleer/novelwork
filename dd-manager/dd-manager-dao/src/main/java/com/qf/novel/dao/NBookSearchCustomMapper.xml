@@ -45,4 +45,10 @@
 
     </select>
 
+    <select id="getCatNameByParent" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT
+       name FROM  n_book_cat WHERE parent_id =#{catParentName}
+
+    </select>
+
 </mapper>

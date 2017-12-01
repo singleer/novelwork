@@ -46,7 +46,7 @@
     }
     //批量删除
     function remove() {
-        var selections = $('#dg').datagrid('getSelections');
+        var selections = $('#dg'). datagrid('getSelections');
         console.log(selections);
         if (selections.length == 0) {
             //客户没有选择记录

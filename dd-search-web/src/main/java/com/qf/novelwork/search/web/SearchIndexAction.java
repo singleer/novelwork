@@ -1,6 +1,7 @@
 package com.qf.novelwork.search.web;
 
 
+import com.qf.novel.pojo.vo.NBookSearchCustom;
 import com.qf.novel.pojo.vo.NSearchBookResult;
 import com.qf.novel.service.SearchBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * User: DHC
@@ -22,13 +26,12 @@ public class SearchIndexAction {
     private SearchBookService searchBookService;
 
     @RequestMapping("/")
-    public String portalIndex(String keyword,
+    public String portalIndex(HttpSession session, String keyword,
                               @RequestParam(defaultValue = "1") Integer page, Model model) throws Exception {
         System.out.println("----------------------------------=");
         if (keyword == null){
             keyword="*:*";
         }
-
         if (keyword != null) {
             //keyword = new String(keyword.getBytes("iso-8859-1"), "utf-8");
             //查询商品列表
@@ -46,4 +49,18 @@ public class SearchIndexAction {
 
         return "index";
     }
+
+    @RequestMapping("/fenlei")
+    public String feilei(int catParentName,Model model){
+        List<String> catNames = searchBookService.searchCatNames(catParentName);
+        System.out.println(catNames.toString());
+        List<NBookSearchCustom> list = searchBookService.searchByCatParentName(catParentName);
+        model.addAttribute("bookList",list);
+
+        model.addAttribute("catNames",catNames);
+
+        return "fenlei";
+
+    }
+
 }

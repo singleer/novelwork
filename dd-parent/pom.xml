@@ -63,14 +63,14 @@
     <!--依赖的声明,但是不会在工程依赖中体现-->
     <dependencyManagement>
         <dependencies>
-            <!--jsp相关-->
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>${javax.servlet-api.version}</version>
-                <!--如果存在编译需要而发布不需要的jar包-->
-                <scope>provided</scope>
-            </dependency>
+        <!--jsp相关-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+            <!--如果存在编译需要而发布不需要的jar包-->
+            <scope>provided</scope>
+        </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>jsp-api</artifactId>

@@ -20,4 +20,5 @@ public class NAdminServiceImpl implements NAdminService {
     public NAdmin selectByadminname(NAdmin nAdmin) {
         return nAdminMapper.selectByadminname(nAdmin);
     }
+
 }

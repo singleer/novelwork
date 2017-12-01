@@ -9,4 +9,6 @@ public interface NBookSearchCustomMapper {
     List<NBookSearchCustom> listSearchBooks();
 
     NBookSearchCustom getById(long itemId);
+
+    List<String> getCatNameByParent(Integer catParentName);
 }
